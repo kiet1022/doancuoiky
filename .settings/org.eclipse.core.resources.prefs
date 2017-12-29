@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/TrangChu.jsp=UTF-8
+encoding//WebContent/WEB-INF/dkmh.jsp=UTF-8
+encoding//WebContent/WEB-INF/sinhvien.jsp=UTF-8
+encoding//src/Controller/dangkykhoahoc.java=UTF-8
+encoding//src/Controller/suakhoahoc.java=UTF-8
+encoding//src/Controller/themkhoahoc.java=UTF-8
+encoding//src/Controller/xoataikhoan.java=UTF-8
+encoding//src/Util/DBConnectionMySQL.java=UTF-8
+encoding/DBConnectionMySQL.java=UTF-8
