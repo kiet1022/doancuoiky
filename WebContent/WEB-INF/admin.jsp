@@ -23,6 +23,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    <script src="ckeditor/ckeditor.js"></script>
 
+	<!-- connect databse -->
+			<sql:setDataSource var="data"
+                driver="com.mysql.jdbc.Driver"
+                url="jdbc:mysql://node6011-daviki.ocs.opusinteractive.io/doancuoiky01?useUnicode=true&characterEncoding=UTF-8" 
+                user = "root"  
+                password = "NYRmri34671" />
 </head>
 <body>
   <div class="row">
@@ -75,12 +81,22 @@
     </div>
 
     <div class="col-md-9 col-sm-9 nopadding w3-border w3-border-teal">
-        <div class="col-md-4"></div>
+    <!--get teacher information-->
+			<sql:query dataSource="${data}" var="result">
+         		select * from teacher where ID =?;
+         		<sql:param value="${id}" />
+			</sql:query>
+
+	<c:forEach var="row" items="${result.rows}">
+		<div class="col-md-4"></div>
             <div class="col-md-4 col-sm-4" style="margin-bottom: 20px;margin-left: 70px;margin-top: 10px;">
                 <img src="image/avt-3.png" alt="hinh" style="width: 40%;">
-                <h4 style="padding-left: 18px;">GV: ABC</h4>
+                <h4 style="padding-left: 18px;">GV: ${row.Name}</h4>
             </div>
-       <div id="thong-tin-ca-nhan" class="w3-container city w3-animate-opacity ">
+	</c:forEach>
+	
+	<c:forEach var="row" items="${result.rows}">
+		<div id="thong-tin-ca-nhan" class="w3-container city w3-animate-opacity ">
         <div class="col-md-6 col-sm-6">
             <div class="col-md-12 col-sm-12 nopadding">
                 <div class="w3-border-left w3-pale-red w3-border-red w3-panel" style="margin: 0;">
@@ -95,23 +111,23 @@
                 <tbody>
                     <tr class="active">
                         <td>MSGV:</td>
-                        <td>GV001</td>
+                        <td>${row.ID}</td>
                     </tr>
                     <tr class="active">
                         <td>Họ và tên:</td>
-                        <td>ABC</td>
+                        <td>${row.Name}</td>
                     </tr>
                     <tr class="active">
                         <td>Ngày sinh:</td>
-                        <td>08/08/1997</td>
+                        <td>${row.DoB}</td>
                     </tr>
                     <tr class="active">
                         <td>Nơi sinh:</td>
-                        <td>Hà Nội</td>
+                        <td>${row.Address}</td>
                     </tr>
                     <tr class="active">
                         <td>Giới tính:</td>
-                        <td>Nam</td>
+                        <td>${row.Sex}</td>
                     </tr>
                     <tr class="active">
                         <td>Dân tộc:</td>
@@ -131,11 +147,11 @@
                     <tbody>
                         <tr class="active">
                             <td>Di động:</td>
-                            <td>01646356275</td>
+                            <td>${row.Phonenumber}</td>
                         </tr>
                         <tr class="active">
                             <td>Email:</td>
-                            <td>Kiet1022@gmail.com</td>
+                            <td>${row.email}</td>
                         </tr>
                         <tr class="active">
                             <td>Địa chỉ:</td>
@@ -166,13 +182,16 @@
             </div>
         </div>
     </div>
+	</c:forEach>
+       
+        
 
-	<c:if test="${thongbao eq 1 }">
+	<c:if test="${thongbao eq 0 }">
 		<script type="text/javascript">
 		alert("Thêm tài khoản thành công");
 		</script>
 	</c:if>	
-	<c:if test="${thongbao eq 0 }">
+	<c:if test="${thongbao eq 1 }">
 		<script type="text/javascript">
 		alert("Tên đăng nhập hoặc mật khẩu đã tồn tại");
 		</script>

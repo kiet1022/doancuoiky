@@ -24,7 +24,9 @@
 <!-- connect databse -->
             <sql:setDataSource var="data"
                 driver="com.mysql.jdbc.Driver"
-                url="jdbc:mysql://node6011-daviki.ocs.opusinteractive.io/doancuoiky01?useUnicode=true&characterEncoding=UTF-8" user = "root"  password = "NYRmri34671" />
+                url="jdbc:mysql://node6011-daviki.ocs.opusinteractive.io/doancuoiky01?useUnicode=true&characterEncoding=UTF-8" 
+                user = "root"  
+                password = "NYRmri34671" />
 </head>
 <body>
   <div class="row">
@@ -609,6 +611,23 @@
   </div>
 </div>
 
+<!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Chú ý!</h4>
+          </div>
+          <div class="modal-body">
+              <p>Đăng Ký Thành công?</p>
+          </div>
+          <div class="modal-footer">
+              <a href="TrangDangKyKhoaHoc"><button type="button" class="btn btn-default">Đồng ý</button></a>
+          </div>
+      </div>
+  </div>
+</div>
 </footer>
 </div>
 </body>

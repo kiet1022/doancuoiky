@@ -24,7 +24,9 @@
   <!-- connect databse -->
             <sql:setDataSource var="data"
                 driver="com.mysql.jdbc.Driver"
-                url="jdbc:mysql://node6011-daviki.ocs.opusinteractive.io/doancuoiky01?useUnicode=true&characterEncoding=UTF-8" user = "root"  password = "NYRmri34671" />
+                url="jdbc:mysql://node6011-daviki.ocs.opusinteractive.io/doancuoiky01?useUnicode=true&characterEncoding=UTF-8" 
+                user = "root"  
+                password = "NYRmri34671" />
                 
 </head>
 <body>

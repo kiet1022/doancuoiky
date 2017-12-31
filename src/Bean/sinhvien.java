@@ -1,20 +1,16 @@
 package Bean;
 
-import java.sql.Date;
-
 public class sinhvien {
-	int ID;
+	String ID;
 	String Name;
-	Date Dob;
+	String Dob;
 	String Sex;
 	String Address;
 	String Phonenumber;
-	String IDClass;
-	String MSSV;
-	public int getID() {
+	public String getID() {
 		return ID;
 	}
-	public void setID(int iD) {
+	public void setID(String iD) {
 		ID = iD;
 	}
 	public String getName() {
@@ -23,10 +19,10 @@ public class sinhvien {
 	public void setName(String name) {
 		Name = name;
 	}
-	public Date getDob() {
+	public String getDob() {
 		return Dob;
 	}
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		Dob = dob;
 	}
 	public String getSex() {
@@ -46,18 +42,6 @@ public class sinhvien {
 	}
 	public void setPhonenumber(String phonenumber) {
 		Phonenumber = phonenumber;
-	}
-	public String getIDClass() {
-		return IDClass;
-	}
-	public void setIDClass(String iDClass) {
-		IDClass = iDClass;
-	}
-	public String getMSSV() {
-		return MSSV;
-	}
-	public void setMSSV(String mSSV) {
-		MSSV = mSSV;
 	}
 	
 }

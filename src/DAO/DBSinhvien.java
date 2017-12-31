@@ -8,26 +8,27 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import Util.DBConnectionMySQL;
-import Bean.Account;
+
 import Bean.sinhvien;
 
 public class DBSinhvien {
 	public DBSinhvien(){}
 	
-			public String GetPass(Account sv) throws SQLException {
-				Connection conn = DBConnectionMySQL.getConnection();
-				String cmd = "select Pass from account where ID = '"+sv.getID()+"';";
-				ResultSet rs = DBConnectionMySQL.ExecuteQueryResultSet(conn, cmd);
-				String Pass="";
-				try {
-
-					while(rs.next()) {
-						Pass = rs.getString("Pass");
-					}
-				} catch (Exception ex) {
-					
-				}
-				conn.close();
-				return Pass;
-			}
+	public Boolean suathongtin(sinhvien sv) throws SQLException {			
+		Connection conn = DBConnectionMySQL.getConnection();
+		try {
+			String call = "{call doancuoiky01.capnhatthongtinsinhvien(?, ?, ?, ?, ?)}";
+			CallableStatement stmt = conn.prepareCall(call);
+			stmt.setString(1,  sv.getID());
+			stmt.setString(2,  sv.getName());
+			stmt.setString(3,  sv.getDob());
+			stmt.setString(4,  sv.getAddress());
+			stmt.setString(5,  sv.getPhonenumber());
+			return DBConnectionMySQL.MyExcuteUpdateNonQuery(conn, stmt);
+		} catch (Exception e) {
+			return false;
+		}finally {
+			conn.close();
+		}
+}
 }

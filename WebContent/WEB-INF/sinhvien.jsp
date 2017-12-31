@@ -24,7 +24,9 @@
 <!-- connect databse -->
             <sql:setDataSource var="data"
                 driver="com.mysql.jdbc.Driver"
-                url="jdbc:mysql://node6011-daviki.ocs.opusinteractive.io/doancuoiky01?useUnicode=true&characterEncoding=UTF-8" user = "root"  password = "NYRmri34671" />
+                url="jdbc:mysql://node6011-daviki.ocs.opusinteractive.io/doancuoiky01?useUnicode=true&characterEncoding=UTF-8" 
+                user = "root"  
+                password = "NYRmri34671" />
 
 </head>
 <body>
@@ -78,7 +80,7 @@
         </div>
     </div>
 
-	
+    
 
     <div class="col-md-9 nopadding w3-border w3-border-teal">
     
@@ -89,7 +91,7 @@
             
             
             <c:forEach var="row" items="${result.rows}">
-            	<div class="w3-padding"> 
+                <div class="w3-padding"> 
           <marquee behavior="alternate" scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()" ><h3>Sinh viên: ${row.Name}</h3></marquee>
 
           </div>
@@ -151,7 +153,71 @@
                             </tr>
                         </tbody>
                     </table>
+                    <button onclick="document.getElementById('id02').style.display='block'" type="button" class="btn btn-info">Chỉnh sửa thông tin</button></td>
                 </div>
+                
+                     <!-- Khung chỉnh sửa thông tin-->
+                     
+                     <c:if test="${thongbao eq 0 }">
+		<script type="text/javascript">
+		alert("Thất bại");
+		</script>
+	</c:if>
+	
+	<c:forEach var="row" items="${result.rows}">
+			<div class="w3-modal" id="id02">
+            <div class="w3-modal-content w3-animate-zoom w3-card-5">
+                <header class="w3-container w3-teal"> 
+                    <span onclick="document.getElementById('id02').style.display='none'" 
+                    class="w3-button w3-display-topright">&times;</span>
+                    <h2>CHỈNH SỬA THÔNG TIN CÁ NHÂN</h2>
+                </header>
+                <div class="w3-container">
+                    <form action="suathongtin" method="post" class="w3-container w3-card-4 w3-text-green w3-margin">
+                        <h2 class="w3-center">VUI LÒNG ĐIỀN THÔNG TIN</h2>
+						
+						<div class="w3-row w3-section">
+                            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+                        <div class="w3-rest">
+                            <input class="w3-input w3-border" name="mssv" type="text" value="${row.ID}" required="">
+                        </div>
+                        </div>
+						
+                        <div class="w3-row w3-section">
+                            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+                        <div class="w3-rest">
+                            <input class="w3-input w3-border" name="hoten" type="text" value="${row.Name}" required="">
+                        </div>
+                        </div>
+
+                        <div class="w3-row w3-section">
+                            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+                                <div class="w3-rest">
+                                    <input class="w3-input w3-border" name="ngaysinh" type="text" value="${row.DoB}" required="">
+                                </div>
+                        </div>
+
+                        <div class="w3-row w3-section">
+                            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+                                <div class="w3-rest">
+                                    <input class="w3-input w3-border" name="noisinh" type="text" value="${row.Address}" required="">
+                                </div>
+                        </div>
+
+                        <div class="w3-row w3-section">
+                            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-phone"></i></div>
+                                <div class="w3-rest">
+                                    <input class="w3-input w3-border" name="sdt" type="text" value="${row.Phonenumber}" required="">
+                                </div>
+                        </div>
+
+                <button data-toggle="modal" data-target="#myModal2" class="button-submit" type="submit"><span>Hoàn tất</span></button>
+                    </form>
+            </div>
+            </div>
+        </div>
+	</c:forEach>
+        
 
                  <div class="col-md-6">
                     <div class="col-md-4"></div>
@@ -381,7 +447,7 @@ and class.Coures_ID = coures.ID and class.Room_ID = room.ID and class.ID = teach
             </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="myModal3" role="dialog">
+    <div class="modal fade" id="myModal2" role="dialog">
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
             <div class="modal-header">
@@ -389,10 +455,10 @@ and class.Coures_ID = coures.ID and class.Room_ID = room.ID and class.ID = teach
               <h4 class="modal-title">Chú ý!</h4>
           </div>
           <div class="modal-body">
-              <p>Bạn chắc chắn muốn đăng xuất?</p>
+              <p>Cập nhật thành công</p>
           </div>
           <div class="modal-footer">
-              <a href="TrangChu"><button type="button" class="btn btn-default">Đồng ý</button></a>
+              <a href="TrangSinhVien"><button type="button" class="btn btn-default">Đồng ý</button></a>
           </div>
       </div>
   </div>
@@ -413,6 +479,24 @@ and class.Coures_ID = coures.ID and class.Room_ID = room.ID and class.ID = teach
           evt.currentTarget.className += " w3-red";
       }
   </script>
+</div>
+
+<!--Modal-->
+ <div class="modal fade" id="myModal3" role="dialog">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Chú ý!</h4>
+          </div>
+          <div class="modal-body">
+              <p>Bạn chắc chắn muốn đăng xuất?</p>
+          </div>
+          <div class="modal-footer">
+              <a href="TrangChu"><button type="button" class="btn btn-default">Đồng ý</button></a>
+          </div>
+      </div>
+  </div>
 </div>
 
 <!--button scroll to top-->
